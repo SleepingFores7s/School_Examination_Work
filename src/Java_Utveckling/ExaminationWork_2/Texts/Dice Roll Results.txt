@@ -1,0 +1,6 @@
+Nr of 1's rolled: 167
+Nr of 2's rolled: 170
+Nr of 3's rolled: 165
+Nr of 4's rolled: 164
+Nr of 5's rolled: 161
+Nr of 6's rolled: 173

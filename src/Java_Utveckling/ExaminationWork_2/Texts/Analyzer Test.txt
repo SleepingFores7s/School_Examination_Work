@@ -1,0 +1,5 @@
+Hej jag heter Java, jag är ett programmeringsspråk.
+Jag kan t.ex gör att 1+1 = 2, eller så kan jag göra om 5 * 5 = 25
+Det finns en massa saker som jag kan användas till, och det ända som begränsar dig är din fantasi!
+Så lycka till med allt arbete och kom ihåg, om något känns omöjligt så
+gå ifrån datorn lite och kom tillbaka om en stund så fixar det sig
