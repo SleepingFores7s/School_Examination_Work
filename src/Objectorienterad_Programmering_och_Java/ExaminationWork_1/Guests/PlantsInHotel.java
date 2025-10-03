@@ -8,9 +8,9 @@ public enum PlantsInHotel {
     MEATLOAF("Meatloaf", "Carnivorous", 0.7),
     OLOF("Olof", "Palm", 1);
 
-    private String plantName;
-    private String plantType;
-    private double plantHeightInMeter;
+    private final String plantName;
+    private final String plantType;
+    private final double plantHeightInMeter;
 
     //Enum Constructor
     PlantsInHotel(String plantName, String plantType, double plantHeight) {
