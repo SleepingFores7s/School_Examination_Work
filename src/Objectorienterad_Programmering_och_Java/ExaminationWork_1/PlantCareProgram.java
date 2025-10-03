@@ -45,7 +45,7 @@ public class PlantCareProgram {
 
             plantCalculations.plantTypeChoice(
                     plantInUse.getPlantType(),
-                    plantInUse.getPlantHeightInCm()
+                    plantInUse.getPlantHeightInMeter()
             );
 
 
