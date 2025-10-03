@@ -6,15 +6,14 @@ public class Calculations {
     //TODO - olika sorters vatten behöver implementeras
 
     private final String LITER = "l";
-    private final String CENTILITER = "cl";
 
     //Vatten
-    private double palmWaterMath = 0.5;
+    private final double palmWaterMath = 0.5;
     //Protein
-    private double carnivorousMathProtein1 = 0.1;
-    private double carnivorousMathProtein2 = 0.2;
+    private final double carnivorousMathProtein1 = 0.1;
+    private final double carnivorousMathProtein2 = 0.2;
     //Mineralvatten
-    private double cactusMathMineral = 0.2;
+    private final double cactusMathMineral = 0.2;
 
 
     //Type choice
@@ -22,7 +21,7 @@ public class Calculations {
         switch(type.toUpperCase()) {
             case "PALM" -> getPalmAmount(height);
             case "CARNIVOROUS" -> getCarnivorousAmount(height);
-            case "CACTUS" -> {getCactusAmount();}
+            case "CACTUS" -> getCactusAmount();
 
         }
     }
