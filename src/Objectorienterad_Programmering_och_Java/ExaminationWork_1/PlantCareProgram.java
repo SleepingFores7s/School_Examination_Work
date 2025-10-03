@@ -12,7 +12,8 @@ public class PlantCareProgram {
         PlantsInHotel plantInUse = null;
         Popups popup = new Popups();
 
-
+//TODO - Lägg till en funktion för att lägga till nya växter, som man
+// kan använda interface/arv/polymorfism på
 
         //Program loop
         boolean workLoop = true;
