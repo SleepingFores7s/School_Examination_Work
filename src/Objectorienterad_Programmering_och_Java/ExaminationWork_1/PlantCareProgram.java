@@ -24,7 +24,7 @@ public class PlantCareProgram {
             do {
 
                 //retrieves a plant through User Input
-                plantInput = popup.getPlantInput().toUpperCase();
+                plantInput = new Popups().getPlantInput().toUpperCase();
 
                 //checks which plant the user want
                 switch (plantInput) {
@@ -60,7 +60,7 @@ public class PlantCareProgram {
 
     public void sendPlantCareMessage(Plant plantInUse) {
         String plantCareMessage = plantInUse.getName() + " needs: " + plantInUse.liquidMath() + "l " + plantInUse.liquidType();
-        popup.openInformationWindow(plantCareMessage);
+        new Popups().openInformationWindow(plantCareMessage);
     }
 
 }
