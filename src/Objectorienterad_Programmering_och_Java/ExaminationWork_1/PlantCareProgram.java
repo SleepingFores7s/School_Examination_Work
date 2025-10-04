@@ -10,6 +10,7 @@ public class PlantCareProgram {
 
         //Essentials
         Calculations plantCalculations = new Calculations();
+        String plantInput;
         Plant plantInUse;
         Popups popup = new Popups();
 
@@ -25,32 +26,34 @@ public class PlantCareProgram {
             //Checks if the plant is in the hotel
             boolean nameLoop = true;
             do {
-                switch (popup.getPlantInput().toUpperCase()) {
+
+                plantInput = popup.getPlantInput().toUpperCase();
+
+                switch (plantInput) {
                     case "IGGE" -> {
                         plantInUse = PlantsInHotel.IGGE.getPlant();
+                        plantInUse.liquidMath();
                         nameLoop = false;
                     }
                     case "OLOF" -> {
                         plantInUse = PlantsInHotel.OLOF.getPlant();
+                        plantInUse.liquidMath();
                         nameLoop = false;
                     }
                     case "LAURA" -> {
                         plantInUse = PlantsInHotel.LAURA.getPlant();
-                        nameLoop = false;
                         plantInUse.liquidMath();
+                        nameLoop = false;
                     }
                     case "MEATLOAF" -> {
                         plantInUse = PlantsInHotel.MEATLOAF.getPlant();
+                        plantInUse.liquidMath();
                         nameLoop = false;
                     }
                     default -> System.out.println("No input was detected");
                 }
             }while(nameLoop);
 
-//            plantCalculations.plantTypeChoice(
-//                    plantInUse.getPlantType(),
-//                    plantInUse.getPlantHeightInMeter()
-//            );
 
 
         } while (workLoop);

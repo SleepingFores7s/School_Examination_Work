@@ -7,35 +7,27 @@ public class Popups {
     private final String TITEL_MESSAGE = "Plant Care";
     private final String whatPlantMessage = "Vilken växt ska få vätska?";
     private final String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
+    private final String exitConfirmationMessage = "Are you sure you want to cancel?";
     private String plantInput;
 
     //Opens a JOptionPane to allow the user to input a plant's name
     public String getPlantInput() {
         do {
-            this.plantInput = JOptionPane.showInputDialog(null, whatPlantMessage);
+            //Asks the user for a plant input
+            this.plantInput = JOptionPane.showInputDialog(
+                    null,
+                    whatPlantMessage
+            );
 
-            //Checks if the String is null or empty and reacts accordingly
-            if (this.plantInput == null) {
+            openNullChecker(this.plantInput);
+        }while (this.plantInput == null || this.plantInput.isEmpty());
 
-                int confirmExit = JOptionPane.showConfirmDialog(
-                        null,
-                        "Are you sure you want to cancel?",
-                        TITEL_MESSAGE,
-                        JOptionPane.YES_OPTION
-                );
-
-                if(confirmExit == 0 || confirmExit == -1) {
-                    //Log message to check for errors
-                    System.out.println("Log message: Exiting System through getPlant()");
-                    System.exit(0);
-                }
-            }else if(this.plantInput.isEmpty()) {
-                openInformationWindow(emptyPlantMessage);
-            }
-        }while (this.plantInput == null);
         return this.plantInput;
     }
+
+    //Generic information window (Used by several functions)
     public void openInformationWindow(String messageText) {
+
 
         JOptionPane.showOptionDialog(
                 null,
@@ -47,6 +39,45 @@ public class Popups {
                 null,
                 0
         );
+
+    }
+
+    //Checks if user input is null or empty
+    public void openNullChecker(String stringCheck) {
+
+        if (stringCheck == null) {
+
+            openExitConfirmation();
+
+        }else if(stringCheck.isEmpty()) {
+
+            openInformationWindow(emptyPlantMessage);
+
+        }
+
+    }
+
+    //Asks if the user is sure in exiting
+    public void openExitConfirmation() {
+
+        int confirmExit = JOptionPane.showConfirmDialog(
+                null,
+                exitConfirmationMessage,
+                TITEL_MESSAGE,
+                JOptionPane.YES_OPTION
+        );
+
+        exitConditionCheck(confirmExit);
+    }
+
+    //Exits
+    public void exitConditionCheck(int exitCheck) {
+
+        if(exitCheck == 0 || exitCheck == -1) {
+            //Log message to check for errors
+            System.out.println("Log message: Exiting System through openExitConfirmation()");
+            System.exit(0);
+        }
 
     }
 
