@@ -13,14 +13,8 @@ public abstract class Plant implements Liquid{
     public String getName() {
         return name;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
 //Height
     public double getHeight() {
         return height;
-    }
-    public void setHeight(double height) {
-        this.height = height;
     }
 }

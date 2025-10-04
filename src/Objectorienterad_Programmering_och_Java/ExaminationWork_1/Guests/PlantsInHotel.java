@@ -1,32 +1,26 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_1.Guests;
 
+import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Cactus;
+import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Carnivorous;
+import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Palm;
+import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Plant;
+
 public enum PlantsInHotel {
 
     //Checked in plants
-    IGGE("Igge", "Cactus", 0.2),
-    LAURA("Laura", "Palm", 3),
-    MEATLOAF("Meatloaf", "Carnivorous", 0.7),
-    OLOF("Olof", "Palm", 1);
+    IGGE(new Cactus("Igge", 0.2)),
+    LAURA(new Palm("Laura", 5)),
+    MEATLOAF(new Carnivorous("Meatloaf", 0.7)),
+    OLOF(new Palm("Olof", 1));
 
-    private final String plantName;
-    private final String plantType;
-    private final double plantHeightInMeter;
+    private final Plant plant;
 
     //Enum Constructor
-    PlantsInHotel(String plantName, String plantType, double plantHeight) {
-        this.plantName = plantName;
-        this.plantType = plantType;
-        this.plantHeightInMeter = plantHeight;
+    PlantsInHotel(Plant plant) {
+        this.plant = plant;
     }
 
-    //Getters
-    public String getPlantName() {
-        return this.plantName;
-    }
-    public String getPlantType() {
-        return this.plantType;
-    }
-    public double getPlantHeightInMeter() {
-        return this.plantHeightInMeter;
+    public Plant getPlant() {
+        return plant;
     }
 }
