@@ -5,16 +5,18 @@ import javax.swing.JOptionPane;
 public class Popups {
 
     private final String TITEL_MESSAGE = "Plant Care";
-    private String whatPlantMessage = "Vilken växt ska få vätska?";
-    private String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
+    private final String whatPlantMessage = "Vilken växt ska få vätska?";
+    private final String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
     private String plantInput;
 
     //Opens a JOptionPane to allow the user to input a plant's name
     public String getPlantInput() {
         do {
             this.plantInput = JOptionPane.showInputDialog(null, whatPlantMessage);
+
             //Checks if the String is null or empty and reacts accordingly
             if (this.plantInput == null) {
+
                 int confirmExit = JOptionPane.showConfirmDialog(
                         null,
                         "Are you sure you want to cancel?",
@@ -28,12 +30,24 @@ public class Popups {
                     System.exit(0);
                 }
             }else if(this.plantInput.isEmpty()) {
-                JOptionPane.showMessageDialog(
-                        null,
-                        emptyPlantMessage
-                );
+                openInformationWindow(emptyPlantMessage);
             }
         }while (this.plantInput == null);
         return this.plantInput;
     }
+    public void openInformationWindow(String messageText) {
+
+        JOptionPane.showOptionDialog(
+                null,
+                (messageText),
+                TITEL_MESSAGE,
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                null,
+                0
+        );
+
+    }
+
 }

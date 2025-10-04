@@ -10,6 +10,7 @@ private final String water = "Vatten";
 
     @Override
     public void liquidMath() {
+
         System.out.println("Plantan" + this.getName() +" ska ha " + (0.5 * this.getHeight() + " " +  this.liquidType()));
     }
 
