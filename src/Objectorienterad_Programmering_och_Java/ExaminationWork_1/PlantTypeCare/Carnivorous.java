@@ -2,7 +2,7 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
 public class Carnivorous extends Plant implements Liquid{
 
-    private String proteinDrink = "Protein Dryck";
+    private final String proteinDrink = "Protein Dryck";
 
     public Carnivorous(String name, double height) {
         super(name, height);

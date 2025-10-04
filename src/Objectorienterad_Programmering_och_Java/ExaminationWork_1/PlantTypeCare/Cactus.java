@@ -2,7 +2,7 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
 public class Cactus extends Plant implements Liquid{
 
-    private String mineralwater = "Mineralvatten";
+    private final String mineralwater = "Mineralvatten";
 
     public Cactus(String name, double height) {
         super(name, height);

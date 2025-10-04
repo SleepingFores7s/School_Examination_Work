@@ -2,7 +2,7 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
 public class Palm extends Plant implements Liquid{
 
-private String water = "Vatten";
+private final String water = "Vatten";
 
     public Palm(String name, double height) {
         super(name, height);
