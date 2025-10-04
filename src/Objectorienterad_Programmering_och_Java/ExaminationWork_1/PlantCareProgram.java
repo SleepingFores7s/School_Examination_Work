@@ -5,14 +5,12 @@ import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.P
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Popups;
 
 public class PlantCareProgram {
+    Popups popup = new Popups();
     public void careProgram() {
 
         //Essentials
         String plantInput;
         Plant plantInUse;
-
-//TODO - Lägg till en funktion för att lägga till nya växter, som man
-// kan använda interface/arv/polymorfism på
 
         //Program loop
         boolean workLoop = true;
@@ -23,10 +21,10 @@ public class PlantCareProgram {
             do {
 
                 //retrieves a plant through User Input
-                plantInput = new Popups().getPlantInput().toUpperCase();
+                plantInput = popup.getPlantInput();
 
                 //checks which plant the user want
-                switch (plantInput) {
+                switch (plantInput.toUpperCase()) {
                     case "IGGE" -> {
                         //polymorfism
                         plantInUse = PlantsInHotel.IGGE.getPlant();
@@ -52,18 +50,22 @@ public class PlantCareProgram {
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
-                    //TODO - remake the no input/ alt. remove default
-                    default -> System.out.println("No input was detected");
+                    default -> {
+                        String noValidInput = "The plant " + plantInput + " is not a guest here.";
+                        popup.openInformationWindow(noValidInput);
+                    }
+
                 }
 
             }while(nameLoop);
 
         } while (workLoop);
+
     }
 
     public void sendPlantCareMessage(Plant plantInUse) {
         String plantCareMessage = plantInUse.getName() + " needs: " + plantInUse.liquidMath() + "l " + plantInUse.liquidType();
-        new Popups().openInformationWindow(plantCareMessage);
+        popup.openInformationWindow(plantCareMessage);
     }
 
 }
