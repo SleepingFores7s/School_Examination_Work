@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Popups {
 
+    //Inkapsling
     private final String TITEL_MESSAGE = "Plant Care";
     private final String whatPlantMessage = "Vilken växt ska få vätska?";
     private final String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
@@ -18,16 +19,13 @@ public class Popups {
                     null,
                     whatPlantMessage
             );
-
             openNullChecker(this.plantInput);
         }while (this.plantInput == null || this.plantInput.isEmpty());
-
         return this.plantInput;
     }
 
     //Generic information window
     public void openInformationWindow(String messageText) {
-
         JOptionPane.showOptionDialog(
                 null,
                 (messageText),
@@ -38,46 +36,35 @@ public class Popups {
                 null,
                 0
         );
-
     }
 
     //Checks if user input is null or empty
     public void openNullChecker(String stringCheck) {
-
         if (stringCheck == null) {
-
             openExitConfirmation();
-
         }else if(stringCheck.isEmpty()) {
-
             openInformationWindow(emptyPlantMessage);
-
         }
-
     }
 
     //Asks if the user is sure in exiting
     public void openExitConfirmation() {
-
         int confirmExit = JOptionPane.showConfirmDialog(
                 null,
                 exitConfirmationMessage,
                 TITEL_MESSAGE,
                 JOptionPane.YES_OPTION
         );
-
         exitConditionCheck(confirmExit);
     }
 
     //Exits
     public void exitConditionCheck(int exitCheck) {
-
         if(exitCheck == 0 || exitCheck == -1) {
             //Log message to check for errors
             System.out.println("Log message: Exiting System through openExitConfirmation()");
             System.exit(0);
         }
-
     }
 
 }

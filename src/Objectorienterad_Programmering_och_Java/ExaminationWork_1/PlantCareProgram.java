@@ -28,22 +28,26 @@ public class PlantCareProgram {
                 //checks which plant the user want
                 switch (plantInput) {
                     case "IGGE" -> {
+                        //polymorfism
                         plantInUse = PlantsInHotel.IGGE.getPlant();
                         //TODO - Make a call to popups information window with liquidMath & liquidType
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "OLOF" -> {
+                        //polymorfism
                         plantInUse = PlantsInHotel.OLOF.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "LAURA" -> {
+                        //polymorfism
                         plantInUse = PlantsInHotel.LAURA.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "MEATLOAF" -> {
+                        //polymorfism
                         plantInUse = PlantsInHotel.MEATLOAF.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
