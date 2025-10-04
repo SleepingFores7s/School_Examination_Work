@@ -28,7 +28,6 @@ public class PlantCareProgram {
                     case "IGGE" -> {
                         //polymorfism
                         plantInUse = PlantsInHotel.IGGE.getPlant();
-                        //TODO - Make a call to popups information window with liquidMath & liquidType
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
