@@ -9,8 +9,8 @@ public class Cactus extends Plant implements Liquid{
     }
 
     @Override
-    public void liquidMath() {
-
+    public double liquidMath() {
+        return 0.2;
     }
 
     @Override

@@ -9,8 +9,8 @@ public class Carnivorous extends Plant implements Liquid{
     }
 
     @Override
-    public void liquidMath() {
-
+    public double liquidMath() {
+        return (0.1 + (0.2 * this.getHeight()));
     }
 
     @Override

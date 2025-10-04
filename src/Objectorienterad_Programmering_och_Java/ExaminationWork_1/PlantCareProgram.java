@@ -2,17 +2,17 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_1;
 
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Guests.PlantsInHotel;
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Plant;
-import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Calculations;
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Popups;
 
 public class PlantCareProgram {
+    Popups popup = new Popups();
     public void careProgram() {
 
         //Essentials
-        Calculations plantCalculations = new Calculations();
         String plantInput;
         Plant plantInUse;
-        Popups popup = new Popups();
+        String plantCareMessage;
+
 
 
 //TODO - Lägg till en funktion för att lägga till nya växter, som man
@@ -27,35 +27,39 @@ public class PlantCareProgram {
             boolean nameLoop = true;
             do {
 
+                //retrieves a plant through User Input
                 plantInput = popup.getPlantInput().toUpperCase();
 
+                //checks which plant the user want
                 switch (plantInput) {
                     case "IGGE" -> {
-                        plantInUse = PlantsInHotel.IGGE.getPlant();
-                        plantInUse.liquidMath();
+                        sendPlantCareMessage(PlantsInHotel.IGGE.getPlant());
                         nameLoop = false;
                     }
                     case "OLOF" -> {
-                        plantInUse = PlantsInHotel.OLOF.getPlant();
-                        plantInUse.liquidMath();
+                        sendPlantCareMessage(PlantsInHotel.OLOF.getPlant());
                         nameLoop = false;
                     }
                     case "LAURA" -> {
-                        plantInUse = PlantsInHotel.LAURA.getPlant();
-                        plantInUse.liquidMath();
+                        sendPlantCareMessage(PlantsInHotel.LAURA.getPlant());
                         nameLoop = false;
                     }
                     case "MEATLOAF" -> {
-                        plantInUse = PlantsInHotel.MEATLOAF.getPlant();
-                        plantInUse.liquidMath();
+                        sendPlantCareMessage(PlantsInHotel.MEATLOAF.getPlant());
                         nameLoop = false;
                     }
+                    //TODO - remake the no input/ alt. remove default
                     default -> System.out.println("No input was detected");
                 }
+
             }while(nameLoop);
-
-
 
         } while (workLoop);
     }
+
+    public void sendPlantCareMessage(Plant plantInUse) {
+        String plantCareMessage = plantInUse.getName() + " needs: " + plantInUse.liquidMath() + "l " + plantInUse.liquidType();
+        popup.openInformationWindow(plantCareMessage);
+    }
+
 }

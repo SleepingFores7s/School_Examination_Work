@@ -25,9 +25,8 @@ public class Popups {
         return this.plantInput;
     }
 
-    //Generic information window (Used by several functions)
+    //Generic information window
     public void openInformationWindow(String messageText) {
-
 
         JOptionPane.showOptionDialog(
                 null,
