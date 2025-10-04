@@ -5,7 +5,6 @@ import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.P
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Popups;
 
 public class PlantCareProgram {
-    Popups popup = new Popups();
     public void careProgram() {
 
         //Essentials
