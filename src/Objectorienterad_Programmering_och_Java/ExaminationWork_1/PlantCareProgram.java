@@ -11,9 +11,6 @@ public class PlantCareProgram {
         //Essentials
         String plantInput;
         Plant plantInUse;
-        String plantCareMessage;
-
-
 
 //TODO - Lägg till en funktion för att lägga till nya växter, som man
 // kan använda interface/arv/polymorfism på
@@ -21,7 +18,6 @@ public class PlantCareProgram {
         //Program loop
         boolean workLoop = true;
         do {
-
 
             //Checks if the plant is in the hotel
             boolean nameLoop = true;
@@ -33,19 +29,24 @@ public class PlantCareProgram {
                 //checks which plant the user want
                 switch (plantInput) {
                     case "IGGE" -> {
-                        sendPlantCareMessage(PlantsInHotel.IGGE.getPlant());
+                        plantInUse = PlantsInHotel.IGGE.getPlant();
+                        //TODO - Make a call to popups information window with liquidMath & liquidType
+                        sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "OLOF" -> {
-                        sendPlantCareMessage(PlantsInHotel.OLOF.getPlant());
+                        plantInUse = PlantsInHotel.OLOF.getPlant();
+                        sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "LAURA" -> {
-                        sendPlantCareMessage(PlantsInHotel.LAURA.getPlant());
+                        plantInUse = PlantsInHotel.LAURA.getPlant();
+                        sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "MEATLOAF" -> {
-                        sendPlantCareMessage(PlantsInHotel.MEATLOAF.getPlant());
+                        plantInUse = PlantsInHotel.MEATLOAF.getPlant();
+                        sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     //TODO - remake the no input/ alt. remove default
