@@ -1,6 +1,9 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
 public class Carnivorous extends Plant implements Liquid{
+
+    private String proteinDrink = "Protein Dryck";
+
     public Carnivorous(String name, double height) {
         super(name, height);
     }
@@ -12,6 +15,6 @@ public class Carnivorous extends Plant implements Liquid{
 
     @Override
     public String liquidType() {
-        return "Protein Dryck";
+        return this.proteinDrink;
     }
 }

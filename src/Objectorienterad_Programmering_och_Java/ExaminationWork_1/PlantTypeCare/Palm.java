@@ -2,6 +2,7 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
 public class Palm extends Plant implements Liquid{
 
+private String water = "Vatten";
 
     public Palm(String name, double height) {
         super(name, height);
@@ -14,6 +15,6 @@ public class Palm extends Plant implements Liquid{
 
     @Override
     public String liquidType() {
-        return "Vatten";
+        return this.water;
     }
 }
