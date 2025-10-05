@@ -3,8 +3,8 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 public abstract class Plant implements Liquid {
 
     //Inkapsling
-    private String name;
-    private double height;
+    private final String name;
+    private final double height;
 
     //Konstruktor
     public Plant(String name, double height) {
