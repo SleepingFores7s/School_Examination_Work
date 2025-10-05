@@ -20,7 +20,7 @@ public class Popups {
                     whatPlantMessage
             );
             openNullChecker(this.plantInput);
-        }while (this.plantInput == null || this.plantInput.isEmpty());
+        } while (this.plantInput == null || this.plantInput.isEmpty());
         return this.plantInput;
     }
 
@@ -42,7 +42,7 @@ public class Popups {
     public void openNullChecker(String stringCheck) {
         if (stringCheck == null) {
             openExitConfirmation();
-        }else if(stringCheck.isEmpty()) {
+        } else if (stringCheck.isEmpty()) {
             openInformationWindow(emptyPlantMessage);
         }
     }
@@ -60,7 +60,7 @@ public class Popups {
 
     //Exits
     public void exitConditionCheck(int exitCheck) {
-        if(exitCheck == 0 || exitCheck == -1) {
+        if (exitCheck == 0 || exitCheck == -1) {
             //Log message to check for errors
             System.out.println("Log message: Exiting System through openExitConfirmation()");
             System.exit(0);

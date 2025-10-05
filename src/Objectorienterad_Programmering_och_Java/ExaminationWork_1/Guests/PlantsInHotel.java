@@ -20,7 +20,8 @@ public enum PlantsInHotel {
         this.plant = plant;
     }
 
+    //Getter
     public Plant getPlant() {
-        return plant;
+        return this.plant;
     }
 }

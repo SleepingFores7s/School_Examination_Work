@@ -4,8 +4,11 @@ import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Guests.PlantsIn
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Plant;
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Popups;
 
+import java.text.DecimalFormat;
+
 public class PlantCareProgram {
     Popups popup = new Popups();
+
     public void careProgram() {
 
         //Essentials
@@ -53,17 +56,17 @@ public class PlantCareProgram {
                         String noValidInput = "The plant " + plantInput + " is not a guest here.";
                         popup.openInformationWindow(noValidInput);
                     }
-
                 }
 
-            }while(nameLoop);
+            } while (nameLoop);
 
         } while (workLoop);
 
     }
 
     public void sendPlantCareMessage(Plant plantInUse) {
-        String plantCareMessage = plantInUse.getName() + " needs: " + plantInUse.liquidMath() + "l " + plantInUse.liquidType();
+        DecimalFormat df = new DecimalFormat("0.##");
+        String plantCareMessage = plantInUse.getName() + " needs: " + df.format(plantInUse.liquidMath()) + "l " + plantInUse.liquidType();
         popup.openInformationWindow(plantCareMessage);
     }
 

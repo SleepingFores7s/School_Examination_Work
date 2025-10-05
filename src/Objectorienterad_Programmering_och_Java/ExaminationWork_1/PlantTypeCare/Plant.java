@@ -1,20 +1,23 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
-public abstract class Plant implements Liquid{
+public abstract class Plant implements Liquid {
 
     //Inkapsling
     private String name;
     private double height;
 
+    //Konstruktor
     public Plant(String name, double height) {
         this.name = name;
         this.height = height;
     }
-//Name
+
+    //Name
     public String getName() {
         return name;
     }
-//Height
+
+    //Height
     public double getHeight() {
         return height;
     }
