@@ -13,6 +13,7 @@ public enum PlantsInHotel {
     MEATLOAF(new Carnivorous("Meatloaf", 0.7)),
     OLOF(new Palm("Olof", 1));
 
+    //Inkapsling
     private final Plant plant;
 
     //Enum Constructor

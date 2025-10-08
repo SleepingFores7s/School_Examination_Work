@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.text.DecimalFormat;
 
 public class PlantCareProgram {
+
     Popups popup = new Popups();
 
     public void careProgram() {
