@@ -59,18 +59,13 @@ public class PlantCareProgram {
                         popup.openInformationWindow(noValidInput);
                     }
                 }
-
-
-
             } while (nameLoop);
-
         } while (workLoop);
-
     }
 
     public void sendPlantCareMessage(Plant plantInUse) {
         DecimalFormat df = new DecimalFormat("0.##");
-        //polymorfism, because im getting the name, math formula & water type through the use of a superclass to call on its subclass's method's
+            //polymorfism, because im getting the name, math formula & water type through the use of a superclass to call on its subclass's method's
         String plantCareMessage = plantInUse.getName() + " behöver: " + df.format(plantInUse.liquidMath()) + "l " + plantInUse.liquidType();
         popup.openInformationWindow(plantCareMessage);
     }

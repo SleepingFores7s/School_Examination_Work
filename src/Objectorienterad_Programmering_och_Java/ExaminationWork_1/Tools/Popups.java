@@ -9,6 +9,7 @@ public class Popups {
     private final String whatPlantMessage = "Vilken växt ska få vätska?";
     private final String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
     private final String exitConfirmationMessage = "Är du säker att du vill avsluta?";
+    private int exitChoice;
     private String plantInput;
 
     //Opens a JOptionPane to allow the user to input a plant's name
@@ -28,16 +29,21 @@ public class Popups {
 
     //Generic information window
     public void openInformationWindow(String messageText) {
-        JOptionPane.showOptionDialog(
-                null,
-                (messageText),
-                TITEL_MESSAGE,
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                0
-        );
+        do {
+            exitChoice = JOptionPane.showOptionDialog(
+                    null,
+                    (messageText),
+                    TITEL_MESSAGE,
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    0
+            );
+            if (exitChoice == -1) {
+                openExitConfirmation();
+            }
+        }while(exitChoice == -1);
     }
 
     //Checks if user input is null or empty

@@ -12,13 +12,15 @@ public abstract class Plant implements Liquid {
         this.height = height;
     }
 
-    //Name //Polymorfism in the sense that I can get the subclasses names by calling this
+    //Name
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    //Height //Polymorfism in the sense that I can get the subclasses height by calling this
+    //Height
     public double getHeight() {
-        return height;
+        return this.height;
     }
+
+
 }

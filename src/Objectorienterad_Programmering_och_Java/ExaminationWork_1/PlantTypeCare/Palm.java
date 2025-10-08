@@ -1,13 +1,14 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
-public class Palm extends Plant implements Liquid {
+public class Palm extends Plant{
 
     //Inkapsling
-    private final String water = "Vatten";
+    private final String waterType; //Vatten
 
     //Konstruktor
-    public Palm(String name, double height) {
+    public Palm(String name, double height, String waterType) {
         super(name, height);
+        this.waterType = waterType;
     }
 
     //Equation for liquid
@@ -19,6 +20,6 @@ public class Palm extends Plant implements Liquid {
     //Liquid type
     @Override
     public String liquidType() {
-        return this.water;
+        return this.waterType;
     }
 }

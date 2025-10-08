@@ -21,7 +21,6 @@ public class Combat {
             default -> null;
         };
 
-        //TODO - Put all the switch if-cases into their own methods to make everything cleaner.
         //Combat loop
         do {
             int combatChoice = jopPopup.openCombatSelectionPopup(player.getName() + " hp: " + player.getHealth() +

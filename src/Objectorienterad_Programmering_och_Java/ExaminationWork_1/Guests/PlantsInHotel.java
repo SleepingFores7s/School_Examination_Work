@@ -8,10 +8,10 @@ import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.P
 public enum PlantsInHotel {
 
     //Checked in plants
-    IGGE(new Cactus("Igge", 0.2)),
-    LAURA(new Palm("Laura", 5)),
-    MEATLOAF(new Carnivorous("Meatloaf", 0.7)),
-    OLOF(new Palm("Olof", 1));
+    IGGE(new Cactus("Igge", 0.2, "Mineralvatten")),
+    LAURA(new Palm("Laura", 5, "Vatten")),
+    MEATLOAF(new Carnivorous("Meatloaf", 0.7, "Protein Dryck")),
+    OLOF(new Palm("Olof", 1, "Vatten"));
 
     //Inkapsling
     private final Plant plant;
@@ -20,7 +20,6 @@ public enum PlantsInHotel {
     PlantsInHotel(Plant plant) {
         this.plant = plant;
     }
-
     //Getter
     public Plant getPlant() {
         return this.plant;

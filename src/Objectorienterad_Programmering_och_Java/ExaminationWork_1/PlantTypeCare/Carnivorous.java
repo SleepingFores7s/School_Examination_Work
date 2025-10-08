@@ -1,13 +1,14 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare;
 
-public class Carnivorous extends Plant implements Liquid {
+public class Carnivorous extends Plant{
 
     //Inkapsling
-    private final String proteinDrink = "Protein Dryck";
+    private final String waterType; //Protein Dryck
 
     //Konstruktor
-    public Carnivorous(String name, double height) {
+    public Carnivorous(String name, double height, String waterType) {
         super(name, height);
+        this.waterType = waterType;
     }
 
     //Equation for liquid
@@ -19,6 +20,6 @@ public class Carnivorous extends Plant implements Liquid {
     //Liquid type
     @Override
     public String liquidType() {
-        return this.proteinDrink;
+        return this.waterType;
     }
 }
