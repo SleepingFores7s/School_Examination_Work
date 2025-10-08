@@ -30,25 +30,25 @@ public class PlantCareProgram {
                 //checks which plant the user want
                 switch (plantInput.toUpperCase()) {
                     case "IGGE" -> {
-                        //polymorfism
+                        //polymorfism by using superclass and setting the subclass
                         plantInUse = PlantsInHotel.IGGE.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "OLOF" -> {
-                        //polymorfism
+                        //polymorfism by using superclass and setting the subclass
                         plantInUse = PlantsInHotel.OLOF.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "LAURA" -> {
-                        //polymorfism
+                        //polymorfism by using superclass and setting the subclass
                         plantInUse = PlantsInHotel.LAURA.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
                     }
                     case "MEATLOAF" -> {
-                        //polymorfism
+                        //polymorfism by using superclass and setting the subclass
                         plantInUse = PlantsInHotel.MEATLOAF.getPlant();
                         sendPlantCareMessage(plantInUse);
                         nameLoop = false;
@@ -59,6 +59,8 @@ public class PlantCareProgram {
                     }
                 }
 
+
+
             } while (nameLoop);
 
         } while (workLoop);
@@ -67,6 +69,7 @@ public class PlantCareProgram {
 
     public void sendPlantCareMessage(Plant plantInUse) {
         DecimalFormat df = new DecimalFormat("0.##");
+        //polymorfism, because im getting the name, math formula & water type through the use of a superclass to call on its subclass's method's
         String plantCareMessage = plantInUse.getName() + " behöver: " + df.format(plantInUse.liquidMath()) + "l " + plantInUse.liquidType();
         popup.openInformationWindow(plantCareMessage);
     }

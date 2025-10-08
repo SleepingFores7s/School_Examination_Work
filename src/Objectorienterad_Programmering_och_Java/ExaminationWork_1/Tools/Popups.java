@@ -17,7 +17,9 @@ public class Popups {
             //Asks the user for a plant input
             this.plantInput = JOptionPane.showInputDialog(
                     null,
-                    whatPlantMessage
+                    whatPlantMessage,
+                    TITEL_MESSAGE,
+                    JOptionPane.PLAIN_MESSAGE
             );
             openNullChecker(this.plantInput);
         } while (this.plantInput == null || this.plantInput.isEmpty());
@@ -31,7 +33,7 @@ public class Popups {
                 (messageText),
                 TITEL_MESSAGE,
                 JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
                 0
