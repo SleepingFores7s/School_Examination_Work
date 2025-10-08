@@ -25,7 +25,7 @@ public class PlantCareProgram {
             boolean nameLoop = true;
             do {
 
-                //retrieves a plant through User Input
+                //retrieves a plant input through User Input
                 plantInput = popup.getPlantInput();
 
                 //checks which plant the user want
