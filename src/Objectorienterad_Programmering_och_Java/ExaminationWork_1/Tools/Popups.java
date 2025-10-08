@@ -8,7 +8,7 @@ public class Popups {
     private final String TITEL_MESSAGE = "Plant Care";
     private final String whatPlantMessage = "Vilken växt ska få vätska?";
     private final String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
-    private final String exitConfirmationMessage = "Are you sure you want to cancel?";
+    private final String exitConfirmationMessage = "Är du säker att du vill avsluta?";
     private String plantInput;
 
     //Opens a JOptionPane to allow the user to input a plant's name

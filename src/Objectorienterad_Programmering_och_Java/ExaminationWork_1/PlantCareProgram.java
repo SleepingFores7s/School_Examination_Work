@@ -4,6 +4,7 @@ import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Guests.PlantsIn
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Plant;
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Popups;
 
+import javax.swing.*;
 import java.text.DecimalFormat;
 
 public class PlantCareProgram {
@@ -53,7 +54,7 @@ public class PlantCareProgram {
                         nameLoop = false;
                     }
                     default -> {
-                        String noValidInput = "The plant " + plantInput + " is not a guest here.";
+                        String noValidInput = "Växten " + plantInput + " är inte en gäst här.";
                         popup.openInformationWindow(noValidInput);
                     }
                 }
@@ -66,7 +67,7 @@ public class PlantCareProgram {
 
     public void sendPlantCareMessage(Plant plantInUse) {
         DecimalFormat df = new DecimalFormat("0.##");
-        String plantCareMessage = plantInUse.getName() + " needs: " + df.format(plantInUse.liquidMath()) + "l " + plantInUse.liquidType();
+        String plantCareMessage = plantInUse.getName() + " behöver: " + df.format(plantInUse.liquidMath()) + "l " + plantInUse.liquidType();
         popup.openInformationWindow(plantCareMessage);
     }
 
