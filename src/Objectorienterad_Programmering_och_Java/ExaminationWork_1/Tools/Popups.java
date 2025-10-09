@@ -7,7 +7,7 @@ public class Popups {
     //Inkapsling
     private final String TITEL_MESSAGE = "Plant Care";
     private final String whatPlantMessage = "Vilken växt ska få vätska?";
-    private final String emptyPlantMessage = "Inget skrevs in, var vänlig försök igen.";
+    private final String emptyPlantMessage = "Ingenting skrevs in, var vänlig försök igen.";
     private final String exitConfirmationMessage = "Är du säker att du vill avsluta?";
     private int exitChoice;
     private String plantInput;
