@@ -26,7 +26,7 @@ public class PlantCareProgram {
             do {
 
                 //retrieves a plant input through User Input
-               String plantInput = popup.getPlantInput();
+                String plantInput = popup.getPlantInput();
 
                 //checks which plant the user wants info about
                 switch (plantInput.toUpperCase()) {
