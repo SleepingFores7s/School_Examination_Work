@@ -4,7 +4,6 @@ import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Guests.PlantsIn
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.PlantTypeCare.Plant;
 import Objectorienterad_Programmering_och_Java.ExaminationWork_1.Tools.Popups;
 
-import javax.swing.*;
 import java.text.DecimalFormat;
 
 public class PlantCareProgram {
