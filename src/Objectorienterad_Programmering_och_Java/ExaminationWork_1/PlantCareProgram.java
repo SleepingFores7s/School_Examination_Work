@@ -9,26 +9,26 @@ import java.text.DecimalFormat;
 
 public class PlantCareProgram {
 
+    //Placed here because it is used in two methods
     Popups popup = new Popups();
 
     public void careProgram() {
 
         //Essentials
-        String plantInput;
         Plant plantInUse;
 
-        //Program loop
+        //Work loop
         boolean workLoop = true;
         do {
 
-            //Checks if the plant is in the hotel
+            //Name Loop
             boolean nameLoop = true;
             do {
 
                 //retrieves a plant input through User Input
-                plantInput = popup.getPlantInput();
+               String plantInput = popup.getPlantInput();
 
-                //checks which plant the user want
+                //checks which plant the user wants info about
                 switch (plantInput.toUpperCase()) {
                     case "IGGE" -> {
                         //polymorfism by using superclass and setting the subclass
@@ -60,7 +60,9 @@ public class PlantCareProgram {
                     }
                 }
             } while (nameLoop);
+
         } while (workLoop);
+
     }
 
     public void sendPlantCareMessage(Plant plantInUse) {
