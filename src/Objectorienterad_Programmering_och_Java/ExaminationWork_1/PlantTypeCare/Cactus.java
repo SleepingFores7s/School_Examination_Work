@@ -14,7 +14,7 @@ public class Cactus extends Plant{
     //Equation for liquid
     @Override
     public double liquidMath() {
-        return 0.2;
+        return 0.02;
     }
 
     //Liquid type
