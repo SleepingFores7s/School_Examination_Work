@@ -3,7 +3,6 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +11,7 @@ class ReadWriteFilesTest {
 
     ReadWriteFiles readWriteFiles = new ReadWriteFiles();
     ArrayList<GymMembers> gymMembersListTest = new ArrayList<>();
+    final boolean isTest = true;
 
     GymMembers gymMemberTest = new GymMembers(
             "Linda Nyberg",
@@ -61,18 +61,34 @@ class ReadWriteFilesTest {
         String userInputIDTest2 = "361015-9737";
         String userInputMemberLevelTest2 = "Guld";
 
-        assert(readWriteFiles.getMembershipStatus(userInputNameTest1).equals(userInputMemberLevelTest1));
-        assert(readWriteFiles.getMembershipStatus(userInputIDTest1).equals(userInputMemberLevelTest1));
-        assert(readWriteFiles.getMembershipStatus(userInputNameTest2).equals(userInputMemberLevelTest2));
-        assert(readWriteFiles.getMembershipStatus(userInputIDTest2).equals(userInputMemberLevelTest2));
+        assert(readWriteFiles.getMembershipStatus(isTest, userInputNameTest1).equals(userInputMemberLevelTest1));
+        assert(readWriteFiles.getMembershipStatus(isTest, userInputIDTest1).equals(userInputMemberLevelTest1));
+        assert(readWriteFiles.getMembershipStatus(isTest, userInputNameTest2).equals(userInputMemberLevelTest2));
+        assert(readWriteFiles.getMembershipStatus(isTest, userInputIDTest2).equals(userInputMemberLevelTest2));
 
     }
 
     @Test
-    public void checkMembershipStatusTest() {
+    public void checkDaysSinceLastPaymentTest() {
 
-//        assert(gymMembersListTest.get)
+        // Test date is : 2024-11-24
+        String lindaSubscribed = gymMembersListTest.get(0).getLatestMembershipPayment(); //2024-10-10
+        String oskarSubscribed = gymMembersListTest.get(1).getLatestMembershipPayment(); //2023-08-09
+        String oneYear = "2023-11-25";
+
+        assert(readWriteFiles.checkDaysSinceLastPayment(isTest, lindaSubscribed) < 365);
+        assert(readWriteFiles.checkDaysSinceLastPayment(isTest, oskarSubscribed) >= 365);
+        assert(readWriteFiles.checkDaysSinceLastPayment(isTest, oneYear) >= 365);
 
     }
+
+    @Test
+    void subscriptionLogic() {
+
+
+
+    }
+
+
 
 }
