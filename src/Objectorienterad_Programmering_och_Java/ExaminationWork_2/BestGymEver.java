@@ -1,7 +1,6 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 
 import javax.swing.*;
-import java.io.File;
 
 public class BestGymEver {
     public void MemberProgram() {
@@ -31,7 +30,8 @@ public class BestGymEver {
 
             readAndWrite.readFileData(GYM_DATA_PATH);
 
-            readAndWrite.getMembershipStatus(userInput);
+            String membershipStatus = readAndWrite.getMembershipStatus(false, userInput);
+            JOptionPane.showMessageDialog(null, membershipStatus);
 
 
 
