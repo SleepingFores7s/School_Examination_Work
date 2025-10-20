@@ -1,13 +1,12 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 
-import javax.swing.JFileChooser;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JOptionPane;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class ReadWriteFiles {
@@ -50,23 +49,47 @@ public class ReadWriteFiles {
     //Compare userInput to Array, and if a name/ID:number match send back
     // - current / past or nonexistent member
 
-    public String getMembershipStatus(String userInput) {
+    public String getMembershipStatus(boolean isTest, String userInput) {
 
         //check the array for any matching names/ID:s
         for(GymMembers members : gymMemberList) {
-            if(members.getName().toLowerCase().equals(userInput.toLowerCase()) || members.getPersonnummer().equals(userInput)) {
-
-                System.out.println(members.getMemberLevel());
+            if(members.getName().equalsIgnoreCase(userInput) || members.getPersonnummer().equals(userInput)) {
+                if(isTest) {
+                    return members.getMemberLevel();
+                }
+                checkDaysSinceLastPayment(false, members.getLatestMembershipPayment());
                 return members.getMemberLevel();
-
             }
-
         }
-        System.out.println("No members with that name/ID in th system.");
-        return "No members with that name/ID.";
+        System.out.println("No members with that name/ID in the system.");
+        return "No members with that name/ID is present in the system.";
+    }
+    public long checkDaysSinceLastPayment(boolean isTest, String lastGymPurchase) {
+
+        LocalDate dateNow;
+
+        if(isTest) {
+            dateNow = LocalDate.of(2024,11,24);
+        }else {
+            dateNow = LocalDate.now();
+        }
+        String[] dateSplitter = lastGymPurchase.split("-");
+        int year = Integer.parseInt(dateSplitter[0].trim());
+        int month = Integer.parseInt(dateSplitter[1].trim());
+        int day = Integer.parseInt(dateSplitter[2].trim());
+        LocalDate purchaseDate = LocalDate.of(year, month, day);
+
+        return ChronoUnit.DAYS.between(purchaseDate, dateNow);
+
     }
 
-
+    public String subscriptionLogic(long daysBetweenDates) {
+        if (daysBetweenDates <= 365) {
+            return "The customer is an active member.";
+        }else{
+            return "The customer is not an active member.";
+        }
+    }
     //Write to File
 
 }
