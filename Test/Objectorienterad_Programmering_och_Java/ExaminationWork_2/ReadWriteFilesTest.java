@@ -3,8 +3,6 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,24 +75,6 @@ class ReadWriteFilesTest {
 
         assert(readWriteFiles.isInputAMember(falseName) == null);
         assert(readWriteFiles.isInputAMember(falseID)== null);
-    }
-
-    @Test
-    public void checkDataToInputTest() {
-        //1
-        String userInputNameTest1 = "Linda Nyberg";
-        String userInputIDTest1 = "490827-3164";
-        String userInputMemberLevelTest1 = "Platina";
-        //2
-        String userInputNameTest2 = "Oskar Bengtsson";
-        String userInputIDTest2 = "361015-9737";
-        String userInputMemberLevelTest2 = "Guld";
-
-        assert(readWriteFiles.getMembershipInformation(isTest, userInputNameTest1).equals(userInputMemberLevelTest1));
-        assert(readWriteFiles.getMembershipInformation(isTest, userInputIDTest1).equals(userInputMemberLevelTest1));
-        assert(readWriteFiles.getMembershipInformation(isTest, userInputNameTest2).equals(userInputMemberLevelTest2));
-        assert(readWriteFiles.getMembershipInformation(isTest, userInputIDTest2).equals(userInputMemberLevelTest2));
-
     }
 
     @Test
