@@ -1,27 +1,24 @@
 package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 
-import javax.swing.JFileChooser;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JOptionPane;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class ReadWriteFiles {
 
     ArrayList<GymMembers> gymMemberList = new ArrayList<>();
 
+    //reads the file, checks line is not null, sends data to ArrayList setter
     public void readFileData(String filePath) {
         //read the file data to a string
-        try(BufferedReader buffRead = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader buffRead = new BufferedReader(new FileReader(filePath))) {
             //Reads the file line by line,
             // putting each line into a temp String,
             // then sending it to be processed
             String tempReadInfo;
-            while((tempReadInfo = buffRead.readLine()) != null) {
+            while ((tempReadInfo = buffRead.readLine()) != null) {
                 readDataToObjectArray(tempReadInfo);
             }
         } catch (FileNotFoundException e) {
@@ -31,6 +28,8 @@ public class ReadWriteFiles {
             throw new RuntimeException(e);
         }
     }
+
+    //Sets data into ArrayList
     public void readDataToObjectArray(String fileData) {
         //Splits the string into several variables
         //Creates an object
@@ -41,32 +40,76 @@ public class ReadWriteFiles {
         String mailadress = splitter[2].trim();
         String personnummer = splitter[3].trim();
         String boughtMembership = splitter[4].trim();
-        String lastAtGym = splitter[5].trim();
+        String lastSubscriptionPayment = splitter[5].trim();
         String memberLevel = splitter[6].trim();
 
-        gymMemberList.add(new GymMembers(name, adress, mailadress, personnummer,boughtMembership, lastAtGym, memberLevel));
+        gymMemberList.add(new GymMembers(name, adress, mailadress, personnummer, boughtMembership, lastSubscriptionPayment, memberLevel));
     }
 
-    //Compare userInput to Array, and if a name/ID:number match send back
-    // - current / past or nonexistent member
+    //Checks if user input is a member.
+    // - if member return member object.
+    // - if not return null.
+    public GymMembers isInputAMember(String userInput) {
 
-    public String getMembershipStatus(String userInput) {
-
-        //check the array for any matching names/ID:s
-        for(GymMembers members : gymMemberList) {
-            if(members.getName().toLowerCase().equals(userInput.toLowerCase()) || members.getPersonnummer().equals(userInput)) {
-
-                System.out.println(members.getMemberLevel());
-                return members.getMemberLevel();
-
+        for (GymMembers member : gymMemberList) {
+            if (member.getName().equalsIgnoreCase(userInput) || member.getPersonnummer().equals(userInput)) {
+                return member;
             }
-
         }
-        System.out.println("No members with that name/ID in th system.");
-        return "No members with that name/ID.";
+        return null;
     }
 
+    //Check to see how long ago subscription was paid.
+    public long checkDaysSinceLastPayment(boolean isTest, String recentPurchase) {
+
+        LocalDate dateNow;
+        long daysSincePayment;
+
+        if (isTest) {
+            dateNow = LocalDate.of(2024, 11, 24);
+        } else {
+            dateNow = LocalDate.now();
+        }
+        String[] dateSplitter = recentPurchase.split("-");
+        int year = Integer.parseInt(dateSplitter[0].trim());
+        int month = Integer.parseInt(dateSplitter[1].trim());
+        int day = Integer.parseInt(dateSplitter[2].trim());
+        LocalDate purchaseDate = LocalDate.of(year, month, day);
+        daysSincePayment = ChronoUnit.DAYS.between(purchaseDate, dateNow);
+
+        return daysSincePayment;
+    }
 
     //Write to File
+
+    //Builds message for the PT file. (Separate method for testing)
+    public String getPrintToPTFile(boolean isTest, GymMembers member) {
+
+        String dateToday;
+
+        if(isTest) {
+            dateToday = "2024-11-24";
+        }else{
+            dateToday = String.valueOf(LocalDate.now());
+        }
+
+        String messageToPTFile = (member.getName() + ";" + member.getPersonnummer() +";"+ dateToday);
+        return messageToPTFile;
+    }
+
+    //Writes PT message to PT file
+    public void printToPTFile(String messageToPtFile) {
+
+        final String PT_FILE_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/PT_Info.txt";
+
+        try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter(PT_FILE_PATH, true))) {
+
+            buffWrite.write(messageToPtFile + System.lineSeparator());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }

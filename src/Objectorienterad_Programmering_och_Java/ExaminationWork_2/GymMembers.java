@@ -10,8 +10,13 @@ public class GymMembers {
     private String latestMembershipPayment;
     private String memberLevel;
 
-    public GymMembers(String name, String adress, String mailAdress,
-                      String personnummer, String boughtMembership, String lastTimeAtGym, String memberLevel) {
+    public GymMembers(String name,
+                      String adress,
+                      String mailAdress,
+                      String personnummer,
+                      String boughtMembership,
+                      String lastTimeAtGym,
+                      String memberLevel) {
         this.name = name;
         this.adress = adress;
         this.mailAdress = mailAdress;
