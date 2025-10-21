@@ -8,49 +8,46 @@ public class BestGymEver {
 
     public void MemberProgram() {
 
-        //1. ask the user for name or personnummer
-        //2. Import the file data to an object within an Array.
-        //3. Check the data for if they are a current member/ past member(use LocalDate) / not a member(not in file)
-        //4. Private Trainer file save the name/ personnummer / current date for when a person is at the gym
-
         //Essentials
-
         final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Data till inlämningsuppgift 2.txt";
         ReadWriteFiles readAndWrite = new ReadWriteFiles();
         GymMembers gymMember = new GymMembers();
         boolean programLoop = true;
         String userInput;
-        //Reads the file into the array
-
 
         //Employee loop
         do{
 
+            //Reads the file into ArrayList to start
             readAndWrite.readFileData(GYM_DATA_PATH);
             
             //asks the user for a name/ID
             userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
             if(userInput == null){
-                JOptionPane.showMessageDialog(null, "Closing the program");
-                System.exit(0);
+                exitWindow();
             }
 
-            //Check if the name/ID is a member, and if they are it returns that object
+            //Checks if the name/ID is a member, and if they are it returns that object
             gymMember = readAndWrite.isInputAMember(userInput);
 
+            //If object is null, it is not a member.
             if(gymMember == null) {
-                //If the object is null, empty
-                JOptionPane.showMessageDialog(null, "The customer is not a member.");
+                messageWindow("The customer is not a member.");
             }else {
                 
-                //Gets how long ago in days the last payment was done.
+                //How long ago in days the last payment was done.
                 long daysSinceLastPayment = readAndWrite.checkDaysSinceLastPayment(false, gymMember.getLatestMembershipPayment());
+
                 //Calls and builds the complete information message.
                 String completeMessage = getCompleteMessage(daysSinceLastPayment, gymMember);
 
+                //Builds the message to PT file
+                String messageToPT = readAndWrite.getPrintToPTFile(false, gymMember);
 
+                //Writes to PT file
+                readAndWrite.printToPTFile(messageToPT);
 
-                //Shows a window with the information message.
+                //Shows a window with the information message about selected member.
                 messageWindow(completeMessage);
 
             }
@@ -82,13 +79,19 @@ public class BestGymEver {
                 JOptionPane.DEFAULT_OPTION
         );
         if(jExit == -1) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Closing the program.",
-                    GYM_TITLE,
-                    JOptionPane.PLAIN_MESSAGE
-            );
+            exitWindow();
         }
+
+    }
+
+    private void exitWindow() {
+        JOptionPane.showMessageDialog(
+                null,
+                "Closing the program.",
+                GYM_TITLE,
+                JOptionPane.PLAIN_MESSAGE
+        );
+        System.exit(0);
 
     }
 }
