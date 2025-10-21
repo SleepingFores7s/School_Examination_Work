@@ -13,6 +13,7 @@ public class BestGymEver {
         //Essentials
         final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Data till inlämningsuppgift 2.txt";
         ReadWriteFiles readAndWrite = new ReadWriteFiles();
+        GymMembers gymMember = new GymMembers();
         boolean programLoop = true;
         String userInput;
         //Reads the file into the array
@@ -31,7 +32,23 @@ public class BestGymEver {
             readAndWrite.readFileData(GYM_DATA_PATH);
 
             String membershipStatus = readAndWrite.getMembershipStatus(false, userInput);
-            JOptionPane.showMessageDialog(null, membershipStatus);
+            long daysSinceLastPayment = readAndWrite.checkDaysSinceLastPayment(false, userInput);
+            String activeMembershipCheck = readAndWrite.subscriptionLogic(daysSinceLastPayment);
+            int daysUntilNextPayment = (int)(365 - daysSinceLastPayment);
+
+            String completeMessage;
+            if(daysUntilNextPayment < 0) {
+                completeMessage = String.format("Name: %s \nMembership plan: Expired", userInput);
+            }else {
+                completeMessage = String.format("Name: %s \nMembership plan: %s\nDays until next payment: %d", userInput, membershipStatus, daysUntilNextPayment);
+            }
+
+
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    completeMessage
+            );
 
 
 
