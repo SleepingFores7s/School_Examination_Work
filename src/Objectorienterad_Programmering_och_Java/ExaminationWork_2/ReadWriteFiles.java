@@ -15,12 +15,12 @@ public class ReadWriteFiles {
 
     public void readFileData(String filePath) {
         //read the file data to a string
-        try(BufferedReader buffRead = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader buffRead = new BufferedReader(new FileReader(filePath))) {
             //Reads the file line by line,
             // putting each line into a temp String,
             // then sending it to be processed
             String tempReadInfo;
-            while((tempReadInfo = buffRead.readLine()) != null) {
+            while ((tempReadInfo = buffRead.readLine()) != null) {
                 readDataToObjectArray(tempReadInfo);
             }
         } catch (FileNotFoundException e) {
@@ -30,6 +30,7 @@ public class ReadWriteFiles {
             throw new RuntimeException(e);
         }
     }
+
     public void readDataToObjectArray(String fileData) {
         //Splits the string into several variables
         //Creates an object
@@ -40,10 +41,10 @@ public class ReadWriteFiles {
         String mailadress = splitter[2].trim();
         String personnummer = splitter[3].trim();
         String boughtMembership = splitter[4].trim();
-        String lastAtGym = splitter[5].trim();
+        String lastSubscriptionPayment = splitter[5].trim();
         String memberLevel = splitter[6].trim();
 
-        gymMemberList.add(new GymMembers(name, adress, mailadress, personnummer,boughtMembership, lastAtGym, memberLevel));
+        gymMemberList.add(new GymMembers(name, adress, mailadress, personnummer, boughtMembership, lastSubscriptionPayment, memberLevel));
     }
 
     //Compare userInput to Array, and if a name/ID:number match send back
@@ -52,41 +53,48 @@ public class ReadWriteFiles {
     public String getMembershipStatus(boolean isTest, String userInput) {
 
         //check the array for any matching names/ID:s
-        for(GymMembers members : gymMemberList) {
-            if(members.getName().equalsIgnoreCase(userInput) || members.getPersonnummer().equals(userInput)) {
-                if(isTest) {
+        for (GymMembers members : gymMemberList) {
+            if (members.getName().equalsIgnoreCase(userInput) || members.getPersonnummer().equals(userInput)) {
+                if (isTest) {
                     return members.getMemberLevel();
                 }
-                checkDaysSinceLastPayment(false, members.getLatestMembershipPayment());
                 return members.getMemberLevel();
             }
         }
         System.out.println("No members with that name/ID in the system.");
         return "No members with that name/ID is present in the system.";
     }
-    public long checkDaysSinceLastPayment(boolean isTest, String lastGymPurchase) {
+
+    public long checkDaysSinceLastPayment(boolean isTest, String userInput) {
+
 
         LocalDate dateNow;
+        long daysSincePayment = -1;
 
-        if(isTest) {
-            dateNow = LocalDate.of(2024,11,24);
-        }else {
-            dateNow = LocalDate.now();
+        for (GymMembers members : gymMemberList) {
+            if (members.getName().equalsIgnoreCase(userInput) || members.getPersonnummer().equals(userInput)) {
+
+                if (isTest) {
+                    dateNow = LocalDate.of(2024, 11, 24);
+                } else {
+                    dateNow = LocalDate.now();
+                }
+                String[] dateSplitter = members.getLatestMembershipPayment().split("-");
+                int year = Integer.parseInt(dateSplitter[0].trim());
+                int month = Integer.parseInt(dateSplitter[1].trim());
+                int day = Integer.parseInt(dateSplitter[2].trim());
+                LocalDate purchaseDate = LocalDate.of(year, month, day);
+                daysSincePayment = ChronoUnit.DAYS.between(purchaseDate, dateNow);
+            }
+
         }
-        String[] dateSplitter = lastGymPurchase.split("-");
-        int year = Integer.parseInt(dateSplitter[0].trim());
-        int month = Integer.parseInt(dateSplitter[1].trim());
-        int day = Integer.parseInt(dateSplitter[2].trim());
-        LocalDate purchaseDate = LocalDate.of(year, month, day);
-
-        return ChronoUnit.DAYS.between(purchaseDate, dateNow);
-
+        return daysSincePayment;
     }
 
     public String subscriptionLogic(long daysBetweenDates) {
         if (daysBetweenDates <= 365) {
             return "The customer is an active member.";
-        }else{
+        } else {
             return "The customer is not an active member.";
         }
     }
