@@ -3,6 +3,8 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,32 +15,39 @@ class ReadWriteFilesTest {
     ArrayList<GymMembers> gymMembersListTest = new ArrayList<>();
     final boolean isTest = true;
 
-    GymMembers gymMemberTest = new GymMembers(
-            "Linda Nyberg",
-            "Grangatan 6, 47371 Halmstad",
-            "rally@fakemail.se",
-            "490827-3164",
-            "2023-10-10",
-            "2024-10-10",
-            "Platina"
-    );
-    GymMembers gymMemberTest1 = new GymMembers(
-            "Oskar Bengtsson",
-            "Ängstorget 59, 24436 Lund",
-            "lucky@fakemail.com",
-            "361015-9737",
-            "2021-08-09",
-            "2023-08-09",
-            "Guld"
-    );
+
 
     @BeforeEach
     void setUp() {
         String filePathTest = "Test/Objectorienterad_Programmering_och_Java/ExaminationWork_2/TextFilesTests/TextTest.txt";
         readWriteFiles.readFileData(filePathTest);
+
+        //Index 0
+        GymMembers gymMemberTest = new GymMembers(
+                "Linda Nyberg",
+                "Grangatan 6, 47371 Halmstad",
+                "rally@fakemail.se",
+                "490827-3164",
+                "2023-10-10",
+                "2024-10-10",
+                "Platina"
+        );
+        //Index 1
+        GymMembers gymMemberTest1 = new GymMembers(
+                "Oskar Bengtsson",
+                "Ängstorget 59, 24436 Lund",
+                "lucky@fakemail.com",
+                "361015-9737",
+                "2021-08-09",
+                "2023-08-09",
+                "Guld"
+        );
+
         gymMembersListTest.add(gymMemberTest);
         gymMembersListTest.add(gymMemberTest1);
     }
+
+    //Read test
 
     @Test
     public void readFileDataToArrayTest() {
@@ -48,6 +57,26 @@ class ReadWriteFilesTest {
         assertNotEquals(gymMembersListTest.get(1).toString(), readWriteFiles.gymMemberList.get(0).toString());
         assertNotEquals(gymMembersListTest.get(0).toString(), readWriteFiles.gymMemberList.get(1).toString());
 
+    }
+
+    @Test
+    void isInputAMemberTest() {
+        String expectedName1 = "Linda Nyberg";
+        String expectedName2 = "Oskar Bengtsson";
+        String expectedID1 = "490827-3164";
+        String expectedID2 = "361015-9737";
+        String falseName = "Gabby Lindbloom";
+        String falseID = "20521215-3561";
+
+
+
+        assertEquals(readWriteFiles.isInputAMember(expectedName1).getName(), gymMembersListTest.getFirst().getName());
+        assertEquals(readWriteFiles.isInputAMember(expectedName2).getName(), gymMembersListTest.get(1).getName());
+        assertEquals(readWriteFiles.isInputAMember(expectedID1).getPersonnummer(), gymMembersListTest.getFirst().getPersonnummer());
+        assertEquals(readWriteFiles.isInputAMember(expectedID2).getPersonnummer(), gymMembersListTest.get(1).getPersonnummer());
+
+        assert(readWriteFiles.isInputAMember(falseName) == null);
+        assert(readWriteFiles.isInputAMember(falseID)== null);
     }
 
     @Test
@@ -61,10 +90,10 @@ class ReadWriteFilesTest {
         String userInputIDTest2 = "361015-9737";
         String userInputMemberLevelTest2 = "Guld";
 
-        assert(readWriteFiles.getMembershipStatus(isTest, userInputNameTest1).equals(userInputMemberLevelTest1));
-        assert(readWriteFiles.getMembershipStatus(isTest, userInputIDTest1).equals(userInputMemberLevelTest1));
-        assert(readWriteFiles.getMembershipStatus(isTest, userInputNameTest2).equals(userInputMemberLevelTest2));
-        assert(readWriteFiles.getMembershipStatus(isTest, userInputIDTest2).equals(userInputMemberLevelTest2));
+        assert(readWriteFiles.getMembershipInformation(isTest, userInputNameTest1).equals(userInputMemberLevelTest1));
+        assert(readWriteFiles.getMembershipInformation(isTest, userInputIDTest1).equals(userInputMemberLevelTest1));
+        assert(readWriteFiles.getMembershipInformation(isTest, userInputNameTest2).equals(userInputMemberLevelTest2));
+        assert(readWriteFiles.getMembershipInformation(isTest, userInputIDTest2).equals(userInputMemberLevelTest2));
 
     }
 
@@ -74,21 +103,30 @@ class ReadWriteFilesTest {
         // Test date is : 2024-11-24
         String lindaSubscribed = gymMembersListTest.get(0).getLatestMembershipPayment(); //2024-10-10
         String oskarSubscribed = gymMembersListTest.get(1).getLatestMembershipPayment(); //2023-08-09
-        String oneYear = "2023-11-25";
+        String oneYearLaterTest = "2023-11-25";
+        String sameDayTest = "2024-11-24";
 
         assert(readWriteFiles.checkDaysSinceLastPayment(isTest, lindaSubscribed) < 365);
         assert(readWriteFiles.checkDaysSinceLastPayment(isTest, oskarSubscribed) >= 365);
-        assert(readWriteFiles.checkDaysSinceLastPayment(isTest, oneYear) >= 365);
+        assert(readWriteFiles.checkDaysSinceLastPayment(isTest, oneYearLaterTest) >= 365);
+        assert(readWriteFiles.checkDaysSinceLastPayment(isTest, sameDayTest) == 0);
 
     }
+
+    //Write tests
 
     @Test
-    void subscriptionLogic() {
+    public void CheckPTStringMessage() {
 
+        //Test date is : 2024-11-24
+        //Format > Name;ID;Date <
+        String expectedLinda = "Linda Nyberg;490827-3164;2024-11-24";
+        String expectedOskar = "Oskar Bengtsson;361015-9737;2024-11-24";
 
+        assertEquals(expectedLinda, readWriteFiles.getPrintToPTFile(isTest, gymMembersListTest.getFirst()));
+        assertEquals(expectedOskar, readWriteFiles.getPrintToPTFile(isTest, gymMembersListTest.get(1)));
+        assertNotEquals(expectedLinda, readWriteFiles.getPrintToPTFile(isTest, gymMembersListTest.get(1)));
+        assertNotEquals(expectedOskar, readWriteFiles.getPrintToPTFile(isTest, gymMembersListTest.getFirst()));
 
     }
-
-
-
 }
