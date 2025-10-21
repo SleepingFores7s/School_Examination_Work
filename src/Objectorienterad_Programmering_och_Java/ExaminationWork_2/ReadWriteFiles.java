@@ -2,7 +2,6 @@ package Objectorienterad_Programmering_och_Java.ExaminationWork_2;
 
 import javax.swing.JOptionPane;
 import java.io.*;
-import java.nio.Buffer;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ public class ReadWriteFiles {
 
     ArrayList<GymMembers> gymMemberList = new ArrayList<>();
 
+    //reads the file, checks line is not null, sends data to ArrayList setter
     public void readFileData(String filePath) {
         //read the file data to a string
         try (BufferedReader buffRead = new BufferedReader(new FileReader(filePath))) {
@@ -29,6 +29,7 @@ public class ReadWriteFiles {
         }
     }
 
+    //Sets data into ArrayList
     public void readDataToObjectArray(String fileData) {
         //Splits the string into several variables
         //Creates an object
@@ -45,8 +46,9 @@ public class ReadWriteFiles {
         gymMemberList.add(new GymMembers(name, adress, mailadress, personnummer, boughtMembership, lastSubscriptionPayment, memberLevel));
     }
 
-    //Compare userInput to Array, and if a name/ID:number match send back
-    // - current / past or nonexistent member
+    //Checks if user input is a member.
+    // - if member return member object.
+    // - if not return null.
     public GymMembers isInputAMember(String userInput) {
 
         for (GymMembers member : gymMemberList) {
@@ -57,26 +59,11 @@ public class ReadWriteFiles {
         return null;
     }
 
-    public String getMembershipInformation(boolean isTest, String userInput) {
-
-        //check the array for any matching names/ID:s
-        for (GymMembers members : gymMemberList) {
-            if (members.getName().equalsIgnoreCase(userInput) || members.getPersonnummer().equals(userInput)) {
-                if (isTest) {
-                    return members.getMemberLevel();
-                }
-                return members.getMemberLevel();
-            }
-        }
-        return "not a member";
-    }
-
+    //Check to see how long ago subscription was paid.
     public long checkDaysSinceLastPayment(boolean isTest, String recentPurchase) {
-
 
         LocalDate dateNow;
         long daysSincePayment = -1;
-
 
         if (isTest) {
             dateNow = LocalDate.of(2024, 11, 24);
@@ -95,8 +82,11 @@ public class ReadWriteFiles {
 
     //Write to File
 
+    //Builds message for the PT file. (Separate method for testing)
     public String getPrintToPTFile(boolean isTest, GymMembers member) {
+
         String dateToday;
+
         if(isTest) {
             dateToday = "2024-11-24";
         }else{
@@ -104,16 +94,20 @@ public class ReadWriteFiles {
         }
 
         String messageToPTFile = (member.getName() + ";" + member.getPersonnummer() +";"+ dateToday);
-
         return messageToPTFile;
     }
 
-    public void printToPTFile() {
+    //Writes PT message to PT file
+    public void printToPTFile(String messageToPtFile) {
 
+        final String PT_FILE_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/PT_Info.txt";
 
+        try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter(PT_FILE_PATH, true))) {
 
-        try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter())) {
+            buffWrite.write(messageToPtFile + System.lineSeparator());
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
