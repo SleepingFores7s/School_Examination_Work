@@ -63,7 +63,7 @@ public class ReadWriteFiles {
     public long checkDaysSinceLastPayment(boolean isTest, String recentPurchase) {
 
         LocalDate dateNow;
-        long daysSincePayment = -1;
+        long daysSincePayment;
 
         if (isTest) {
             dateNow = LocalDate.of(2024, 11, 24);
