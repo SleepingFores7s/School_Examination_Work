@@ -10,8 +10,6 @@ public class GymMembers {
     private String latestMembershipPayment;
     private String memberLevel;
 
-    public GymMembers() {}
-
     public GymMembers(String name,
                       String adress,
                       String mailAdress,
