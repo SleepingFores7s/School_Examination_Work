@@ -11,8 +11,7 @@ public class BestGymEver {
         //Essentials
         final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Data till inlämningsuppgift 2.txt";
         ReadWriteFiles readAndWrite = new ReadWriteFiles();
-        GymMembers gymMember = new GymMembers();
-        boolean programLoop = true;
+        GymMembers gymMember;
         String userInput;
 
         //Employee loop
@@ -23,6 +22,7 @@ public class BestGymEver {
             
             //asks the user for a name/ID
             userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
+            System.out.println(userInput);
             if(userInput == null){
                 exitWindow();
             }
