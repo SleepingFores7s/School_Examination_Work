@@ -35,13 +35,16 @@ public class ReadWriteFiles {
         //Creates an object
         //Puts object into Array
         String[] splitter = fileData.split(";");
-        String name = splitter[0].trim();
-        String adress = splitter[1].trim();
-        String mailadress = splitter[2].trim();
-        String personnummer = splitter[3].trim();
-        String boughtMembership = splitter[4].trim();
-        String lastSubscriptionPayment = splitter[5].trim();
-        String memberLevel = splitter[6].trim();
+
+        String name, adress, mailadress, personnummer, boughtMembership, lastSubscriptionPayment, memberLevel;
+
+         name = splitter[0].trim();
+         adress = splitter[1].trim();
+         mailadress = splitter[2].trim();
+         personnummer = splitter[3].trim();
+         boughtMembership = splitter[4].trim();
+         lastSubscriptionPayment = splitter[5].trim();
+         memberLevel = splitter[6].trim();
 
         gymMemberList.add(new GymMembers(name, adress, mailadress, personnummer, boughtMembership, lastSubscriptionPayment, memberLevel));
     }
