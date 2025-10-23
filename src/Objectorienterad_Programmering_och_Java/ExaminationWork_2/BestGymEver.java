@@ -57,7 +57,7 @@ public class BestGymEver {
 
     private static String getCompleteMessage(long daysSinceLastPayment, GymMembers gymMember) {
         int daysInAYear = 365;
-        long daysUntilNextPayment = (int)(daysInAYear - daysSinceLastPayment);
+        int daysUntilNextPayment = (int)(daysInAYear - daysSinceLastPayment);
 
         String completeMessage;
 
@@ -91,7 +91,7 @@ public class BestGymEver {
                 GYM_TITLE,
                 JOptionPane.PLAIN_MESSAGE
         );
-        System.exit(0);
 
+        System.exit(0);
     }
 }
