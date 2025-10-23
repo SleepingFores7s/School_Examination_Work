@@ -19,7 +19,7 @@ class ReadWriteFilesTest {
         readWriteFiles.readFileData(filePathTest);
 
         //Index 0
-        GymMembers gymMemberTest = new GymMembers(
+        GymMembers gymMemberTest1 = new GymMembers(
                 "Linda Nyberg",
                 "Grangatan 6, 47371 Halmstad",
                 "rally@fakemail.se",
@@ -29,7 +29,7 @@ class ReadWriteFilesTest {
                 "Platina"
         );
         //Index 1
-        GymMembers gymMemberTest1 = new GymMembers(
+        GymMembers gymMemberTest2 = new GymMembers(
                 "Oskar Bengtsson",
                 "Ängstorget 59, 24436 Lund",
                 "lucky@fakemail.com",
@@ -39,8 +39,8 @@ class ReadWriteFilesTest {
                 "Guld"
         );
 
-        gymMembersListTest.add(gymMemberTest);
         gymMembersListTest.add(gymMemberTest1);
+        gymMembersListTest.add(gymMemberTest2);
     }
 
     //Read test
@@ -72,7 +72,7 @@ class ReadWriteFilesTest {
         assertEquals(readWriteFiles.isInputAMember(expectedID2).getPersonnummer(), gymMembersListTest.get(1).getPersonnummer());
 
         assert(readWriteFiles.isInputAMember(falseName) == null);
-        assert(readWriteFiles.isInputAMember(falseID)== null);
+        assert(readWriteFiles.isInputAMember(falseID) == null);
     }
 
     @Test
