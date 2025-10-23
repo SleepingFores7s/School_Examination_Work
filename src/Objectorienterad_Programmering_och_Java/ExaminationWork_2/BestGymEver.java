@@ -21,7 +21,8 @@ public class BestGymEver {
             
             //asks the user for a name/ID
             String userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
-            System.out.println(userInput);
+
+            //Exit condition
             if(userInput == null){
                 exitWindow();
             }
