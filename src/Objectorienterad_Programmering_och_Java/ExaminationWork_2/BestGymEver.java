@@ -12,7 +12,6 @@ public class BestGymEver {
         final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Data till inlämningsuppgift 2.txt";
         ReadWriteFiles readWrite = new ReadWriteFiles();
         GymMembers gymMember;
-        String userInput;
 
         //Employee loop
         do{
@@ -21,7 +20,7 @@ public class BestGymEver {
             readWrite.readFileData(GYM_DATA_PATH);
             
             //asks the user for a name/ID
-            userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
+            String userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
             System.out.println(userInput);
             if(userInput == null){
                 exitWindow();
