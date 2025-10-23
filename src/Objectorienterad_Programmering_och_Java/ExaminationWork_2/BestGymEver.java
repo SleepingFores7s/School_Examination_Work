@@ -10,7 +10,7 @@ public class BestGymEver {
 
         //Essentials
         final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Data till inlämningsuppgift 2.txt";
-        ReadWriteFiles readAndWrite = new ReadWriteFiles();
+        ReadWriteFiles readWrite = new ReadWriteFiles();
         GymMembers gymMember;
         String userInput;
 
@@ -18,7 +18,7 @@ public class BestGymEver {
         do{
 
             //Reads the file into ArrayList to start
-            readAndWrite.readFileData(GYM_DATA_PATH);
+            readWrite.readFileData(GYM_DATA_PATH);
             
             //asks the user for a name/ID
             userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
@@ -28,7 +28,7 @@ public class BestGymEver {
             }
 
             //Checks if the name/ID is a member, and if they are it returns that object
-            gymMember = readAndWrite.isInputAMember(userInput);
+            gymMember = readWrite.isInputAMember(userInput);
 
             //If object is null, it is not a member.
             if(gymMember == null) {
@@ -36,16 +36,16 @@ public class BestGymEver {
             }else {
                 
                 //How long ago in days the last payment was done.
-                long daysSinceLastPayment = readAndWrite.checkDaysSinceLastPayment(false, gymMember.getLatestMembershipPayment());
+                long daysSinceLastPayment = readWrite.checkDaysSinceLastPayment(false, gymMember.getLatestMembershipPayment());
 
                 //Calls and builds the complete information message.
                 String completeMessage = getCompleteMessage(daysSinceLastPayment, gymMember);
 
                 //Builds the message to PT file
-                String messageToPT = readAndWrite.getPrintToPTFile(false, gymMember);
+                String messageToPT = readWrite.getPrintToPTFile(false, gymMember);
 
                 //Writes to PT file
-                readAndWrite.printToPTFile(messageToPT);
+                readWrite.printToPTFile(messageToPT);
 
                 //Shows a window with the information message about selected member.
                 messageWindow(completeMessage);

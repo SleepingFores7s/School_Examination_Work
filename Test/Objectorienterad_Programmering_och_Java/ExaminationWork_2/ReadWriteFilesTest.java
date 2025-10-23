@@ -13,8 +13,6 @@ class ReadWriteFilesTest {
     ArrayList<GymMembers> gymMembersListTest = new ArrayList<>();
     final boolean isTest = true;
 
-
-
     @BeforeEach
     void setUp() {
         String filePathTest = "Test/Objectorienterad_Programmering_och_Java/ExaminationWork_2/TextFilesTests/TextTest.txt";

@@ -15,14 +15,14 @@ public class GymMembers {
                       String mailAdress,
                       String personnummer,
                       String boughtMembership,
-                      String lastTimeAtGym,
+                      String latestMembershipPayment,
                       String memberLevel) {
         this.name = name;
         this.adress = adress;
         this.mailAdress = mailAdress;
         this.personnummer = personnummer;
         this.boughtMembership = boughtMembership;
-        this.latestMembershipPayment = lastTimeAtGym;
+        this.latestMembershipPayment = latestMembershipPayment;
         this.memberLevel = memberLevel;
     }
 

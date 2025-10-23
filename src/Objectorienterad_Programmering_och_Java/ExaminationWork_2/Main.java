@@ -7,3 +7,12 @@ public class Main {
 
     }
 }
+
+/**
+ *
+ * Gustaf Sjöberg
+ *
+ * Linda Nyberg
+ *
+ * Gustav Johansson
+ */
