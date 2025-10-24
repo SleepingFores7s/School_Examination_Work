@@ -14,16 +14,16 @@ public class BestGymEver {
         GymMembers gymMember;
 
         //Employee loop
-        do{
+        do {
 
             //Reads the file into ArrayList to start
             readWrite.readFileData(GYM_DATA_PATH);
-            
+
             //asks the user for a name/ID
             String userInput = JOptionPane.showInputDialog("Input a members Name or ID:number");
 
             //Exit condition
-            if(userInput == null){
+            if (userInput == null) {
                 exitWindow();
             }
 
@@ -31,9 +31,9 @@ public class BestGymEver {
             gymMember = readWrite.isInputAMember(userInput);
 
             //If object is null, it is not a member.
-            if(gymMember == null) {
+            if (gymMember == null) {
                 messageWindow("The customer is not a member.");
-            }else {
+            } else {
 
                 //How long ago in days the last payment was done.
                 long daysSinceLastPayment = readWrite.checkDaysSinceLastPayment(false, gymMember.getLatestMembershipPayment());
@@ -54,12 +54,12 @@ public class BestGymEver {
 
             }
 
-        }while(true);
+        } while (true);
     }
 
     private static String getCompleteMessage(long daysSinceLastPayment, GymMembers gymMember) {
         int daysInAYear = 365;
-        int daysUntilNextPayment = (int)(daysInAYear - daysSinceLastPayment);
+        int daysUntilNextPayment = (int) (daysInAYear - daysSinceLastPayment);
 
         String completeMessage;
 
@@ -80,7 +80,7 @@ public class BestGymEver {
                 GYM_TITLE,
                 JOptionPane.DEFAULT_OPTION
         );
-        if(jExit == -1) {
+        if (jExit == -1) {
             exitWindow();
         }
 
