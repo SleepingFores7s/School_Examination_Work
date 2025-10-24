@@ -34,12 +34,14 @@ public class BestGymEver {
             if(gymMember == null) {
                 messageWindow("The customer is not a member.");
             }else {
-                
+
                 //How long ago in days the last payment was done.
                 long daysSinceLastPayment = readWrite.checkDaysSinceLastPayment(false, gymMember.getLatestMembershipPayment());
 
                 //Calls and builds the complete information message.
                 String completeMessage = getCompleteMessage(daysSinceLastPayment, gymMember);
+
+                //TODO - Needs to exclude expired people from getting sent to PT file
 
                 //Builds the message to PT file
                 String messageToPT = readWrite.getPrintToPTFile(false, gymMember);
