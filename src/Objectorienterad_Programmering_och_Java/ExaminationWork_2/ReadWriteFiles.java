@@ -103,8 +103,7 @@ public class ReadWriteFiles {
     //Writes PT message to PT file
     public void printToPTFile(String messageToPtFile) {
 
-        final String PT_FILE_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/PT_Info.txt";
-
+        final String PT_FILE_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Resources/PT_Info.txt";
         try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter(PT_FILE_PATH, true))) {
 
             buffWrite.write(messageToPtFile + System.lineSeparator());

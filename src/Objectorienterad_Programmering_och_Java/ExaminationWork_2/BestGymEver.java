@@ -9,7 +9,7 @@ public class BestGymEver {
     public void MemberProgram() {
 
         //Essentials
-        final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Data till inlämningsuppgift 2.txt";
+        final String GYM_DATA_PATH = "src/Objectorienterad_Programmering_och_Java/ExaminationWork_2/Resources/Data till inlämningsuppgift 2.txt";
         ReadWriteFiles readWrite = new ReadWriteFiles();
         GymMembers gymMember;
 
