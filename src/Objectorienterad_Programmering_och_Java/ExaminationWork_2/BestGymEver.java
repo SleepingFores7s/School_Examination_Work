@@ -42,12 +42,15 @@ public class BestGymEver {
                 String completeMessage = getCompleteMessage(daysSinceLastPayment, gymMember);
 
                 //TODO - Needs to exclude expired people from getting sent to PT file
+                if(gymMember.isMembershipStatus()) {
 
-                //Builds the message to PT file
-                String messageToPT = readWrite.getPrintToPTFile(false, gymMember);
+                    //Builds the message to PT file
+                    String messageToPT = readWrite.getPrintToPTFile(false, gymMember);
 
-                //Writes to PT file
-                readWrite.printToPTFile(messageToPT);
+                    //Writes to PT file
+                    readWrite.printToPTFile(messageToPT);
+
+                }
 
                 //Shows a window with the information message about selected member.
                 messageWindow(completeMessage);
@@ -65,8 +68,10 @@ public class BestGymEver {
 
         //Checks if the last payment was more than 1 year ago and creates the String format accordingly.
         if (daysUntilNextPayment < 0) {
+            gymMember.setMembershipStatus(false);
             completeMessage = String.format("Name: %s \nMembership plan: Expired", gymMember.getName());
         } else {
+            gymMember.setMembershipStatus(true);
             completeMessage = String.format("Name: %s \nMembership plan: %s\nDays until next payment: %d", gymMember.getName(), gymMember.getMemberLevel(), daysUntilNextPayment);
         }
         return completeMessage;

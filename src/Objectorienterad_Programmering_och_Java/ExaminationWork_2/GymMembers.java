@@ -9,6 +9,7 @@ public class GymMembers {
     private String boughtMembership;
     private String latestMembershipPayment;
     private String memberLevel;
+    private boolean membershipStatus;
 
     public GymMembers(String name,
                       String adress,
@@ -44,6 +45,14 @@ public class GymMembers {
 
     public String getLatestMembershipPayment() {
         return this.latestMembershipPayment;
+    }
+
+    public boolean isMembershipStatus() {
+        return this.membershipStatus;
+    }
+
+    public void setMembershipStatus(boolean membershipStatus) {
+        this.membershipStatus = membershipStatus;
     }
 
     public String toString() {
